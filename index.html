@@ -4,11 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Map</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope&display=swap">
 <style>
     body {
-        font-family: Arial, sans-serif;
+        font-family: 'Manrope', sans-serif;
         margin: 0;
         padding: 0;
+        color: black; /* Set the default text color to black */
+        font-size: 15px;
     }
     header {
         background-color: white;
@@ -37,6 +40,29 @@
         width: 30px;
         height: 24px;
     }
+    .info-panel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-top: 1px solid black;
+    }
+    .info-item {
+        display: flex;
+        align-items: center;
+        border: 1px solid black;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px; /* Add a slight curve */
+        color: black; /* Set the text color to black */
+        font-family: 'Manrope', sans-serif; /* Set the font family */
+    }
+    .info-item img {
+        margin-right: 5px;
+    }
+    .refresh-button {
+        cursor: pointer;
+    }
 </style>
 </head>
 <body>
@@ -45,6 +71,21 @@
             <img class="logo" src="img/logo.svg" alt="Logo" onclick="window.location.href='index.html';">
             <img class="change" src="img/change.svg" alt="Change" onclick="window.location.href='index.html';">
             <img class="settings" src="img/settings.svg" alt="Settings" onclick="window.location.href='index.html';">
+        </div>
+        <div class="info-panel">
+            <div class="info-item">
+                <img src="img/distance.svg" alt="Distance" style="height: 30px; width: 30px;">
+                <span>000 km</span>
+            </div>
+            <div class="info-item">
+                <img src="img/time.svg" alt="Time" style="height: 32px; width: 32px;">
+                <span>0000 min</span>
+            </div>
+            <div class="info-item">
+                <img src="img/speed.svg" alt="Speed" style="height: 28px; width: 28px;">
+                <span>000 kmph</span>
+            </div>
+            <img class="refresh-button" src="img/refresh.png" alt="Refresh" style="height: 32px; width: 32px;" onclick="window.location.reload();">
         </div>
     </header>
     <!-- Your content here -->
