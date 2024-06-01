@@ -16,6 +16,7 @@
         height: 100vh;
         display: flex;
         flex-direction: column;
+        position: relative;
     }
     header {
         background-color: white;
@@ -68,14 +69,13 @@
     }
     .map-section {
         flex: 1;
-        position: relative;
     }
     #map {
         width: 100%;
         height: 100%;
     }
     .follow-marker-button {
-        position: absolute;
+        position: fixed;
         bottom: 10px;
         right: 10px;
         background: white;
@@ -112,8 +112,8 @@
     </header>
     <div class="map-section">
         <div id="map"></div>
-        <img class="follow-marker-button" src="img/follow.svg" alt="Follow Marker" onclick="followMarker()">
     </div>
+    <img class="follow-marker-button" src="img/follow.svg" alt="Follow Marker" onclick="followMarker()">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         var map = L.map('map', {
