@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Map</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: white;
+        color: white;
+        padding: 3px;
+    }
+    .logo-menu {
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+    .logo-menu img {
+        cursor: pointer;
+    }
+    .logo-menu img.logo {
+        width: 34px;
+        height: 35px;
+    }
+    .logo-menu img.change {
+        width: 111px;
+        height: 46px;
+    }
+    .logo-menu img.settings {
+        width: 30px;
+        height: 24px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <div class="logo-menu">
+            <img class="logo" src="img/logo.svg" alt="Logo" onclick="window.location.href='index.html';">
+            <img class="change" src="img/change.svg" alt="Change" onclick="window.location.href='index.html';">
+            <img class="settings" src="img/settings.svg" alt="Settings" onclick="window.location.href='index.html';">
+        </div>
+    </header>
+    <!-- Your content here -->
+</body>
+</html>
