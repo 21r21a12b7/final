@@ -136,20 +136,16 @@
         }).addTo(map);
 
         destinationMarker.on('click', function() {
-            map.setView(destinationLocation, 19, {
+            map.flyTo(destinationLocation, 19, {
                 animate: true,
-                pan: {
-                    duration: 1
-                }
+                // duration: 1 // duration of the zoom animation in seconds
             });
         });
 
         function followMarker() {
-            map.setView(destinationLocation, 19, {
+            map.flyTo(destinationLocation, 19, {
                 animate: true,
-                pan: {
-                    duration: 1
-                }
+                // duration: 1 // duration of the zoom animation in seconds
             });
         }
     </script>
