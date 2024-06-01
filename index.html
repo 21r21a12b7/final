@@ -1,92 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Map</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope&display=swap">
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<style>
-    body {
-        font-family: 'Manrope', sans-serif;
-        margin: 0;
-        padding: 0;
-        color: black;
-        font-size: 16px;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-    }
-    header {
-        background-color: white;
-        padding: 3px;
-    }
-    .logo-menu {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px;
-    }
-    .logo-menu img {
-        cursor: pointer;
-    }
-    .logo-menu img.logo {
-        width: 34px;
-        height: 35px;
-    }
-    .logo-menu img.change {
-        width: 111px;
-        height: 46px;
-    }
-    .logo-menu img.settings {
-        width: 30px;
-        height: 24px;
-    }
-    .info-panel {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px;
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
-    }
-    .info-item {
-        display: flex;
-        align-items: center;
-        border: 1px solid black;
-        padding: 5px;
-        margin: 5px;
-        border-radius: 5px;
-        color: black;
-        font-family: 'Manrope', sans-serif;
-    }
-    .info-item img {
-        margin-right: 5px;
-    }
-    .refresh-button {
-        cursor: pointer;
-    }
-    .map-section {
-        flex: 1;
-    }
-    #map {
-        width: 100%;
-        height: 100%;
-    }
-    .follow-marker-button {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        background: white;
-        border: 1px solid black;
-        border-radius: 50%;
-        padding: 10px;
-        cursor: pointer;
-        z-index: 1000;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+            font-size: 16px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        header {
+            background-color: white;
+            padding: 3px;
+        }
+
+        .logo-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .logo-menu img {
+            cursor: pointer;
+        }
+
+        .logo-menu img.logo {
+            width: 34px;
+            height: 35px;
+        }
+
+        .logo-menu img.change {
+            width: 111px;
+            height: 46px;
+        }
+
+        .logo-menu img.settings {
+            width: 30px;
+            height: 24px;
+        }
+
+        .info-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            border: 1px solid black;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            color: black;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .info-item img {
+            margin-right: 5px;
+        }
+
+        .refresh-button {
+            cursor: pointer;
+        }
+
+        .map-section {
+            flex: 1;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .follow-marker-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: white;
+            border: 1px solid black;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <div class="logo-menu">
@@ -107,7 +122,8 @@
                 <img src="img/speed.svg" alt="Speed" style="height: 28px; width: 28px;">
                 <span>25kmph</span>
             </div>
-            <img class="refresh-button" src="img/refresh.png" alt="Refresh" style="height: 32px; width: 32px;" onclick="window.location.reload();">
+            <img class="refresh-button" src="img/refresh.png" alt="Refresh" style="height: 32px; width: 32px;"
+                onclick="window.location.reload();">
         </div>
     </header>
     <div class="map-section">
@@ -116,38 +132,67 @@
     <img class="follow-marker-button" src="img/follow.svg" alt="Follow Marker" onclick="followMarker()">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        var destinationLocation = [17.595984, 78.442243];
 
         var map = L.map('map', {
             zoomControl: false,
             attributionControl: false
-        }).setView(destinationLocation, 19);
+        }).setView([0, 0], 19);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
 
-        var destinationMarker = L.marker(destinationLocation, {
-            icon: L.icon({
-                iconUrl: 'img/college.png',
-                iconSize: [32, 32], // size of the icon
-                iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
-            })
-        }).addTo(map);
+        var destinationLocation; // Declare destinationLocation outside fetch block
 
-        destinationMarker.on('click', function() {
-            map.flyTo(destinationLocation, 19, {
-                animate: true,
-                // duration: 1 // duration of the zoom animation in seconds
-            });
-        });
+        // Fetch the coordinates.json file
+        fetch('coordinates.json')
+            .then(response => response.json())
+            .then(data => {
+                var coordinates = data;
+
+                var polyline = L.polyline(coordinates, { color: 'black', weight: 1.5 }).addTo(map);
+                map.fitBounds(polyline.getBounds(), { padding: [15, 15] });
+
+                var sourceLocation = coordinates[0];
+                var sourceMarker = L.marker(sourceLocation, {
+                    icon: L.icon({
+                        iconUrl: 'img/firstStop.png',
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 32],
+                    })
+                }).addTo(map);
+
+                sourceMarker.on('click', function () {
+                    map.flyTo(sourceLocation, 19, {
+                        animate: true,
+                    });
+                });
+
+                destinationLocation = coordinates[coordinates.length - 1]; // Assign destinationLocation here
+
+                var destinationMarker = L.marker(destinationLocation, {
+                    icon: L.icon({
+                        iconUrl: 'img/college.png',
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 32],
+                    })
+                }).addTo(map);
+
+                destinationMarker.on('click', function () {
+                    map.flyTo(destinationLocation, 19, {
+                        animate: true,
+                    });
+                });
+
+            })
+            .catch(error => console.error('Error fetching coordinates.json:', error));
 
         function followMarker() {
             map.flyTo(destinationLocation, 19, {
                 animate: true,
-                // duration: 1 // duration of the zoom animation in seconds
             });
         }
     </script>
 </body>
+
 </html>
