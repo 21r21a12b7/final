@@ -116,17 +116,36 @@
     <img class="follow-marker-button" src="img/follow.svg" alt="Follow Marker" onclick="followMarker()">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
+        var destinationLocation = [17.595984, 78.442243];
+
         var map = L.map('map', {
             zoomControl: false,
             attributionControl: false
-        }).setView([17.595732, 78.440478], 19);
+        }).setView(destinationLocation, 19);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
 
+        var destinationMarker = L.marker(destinationLocation, {
+            icon: L.icon({
+                iconUrl: 'img/college.png',
+                iconSize: [32, 32], // size of the icon
+                iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
+            })
+        }).addTo(map);
+
+        destinationMarker.on('click', function() {
+            map.setView(destinationLocation, 19, {
+                animate: true,
+                pan: {
+                    duration: 1
+                }
+            });
+        });
+
         function followMarker() {
-            map.setView([17.595727, 78.440482], 19, {
+            map.setView(destinationLocation, 19, {
                 animate: true,
                 pan: {
                     duration: 1
