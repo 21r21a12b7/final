@@ -143,6 +143,7 @@
         }).addTo(map);
 
         var destinationLocation; // Declare destinationLocation outside fetch block
+        var studentStopLocation = [17.5764616, 78.4243604]; // Declare studentStopLocation
 
         // Fetch the coordinates.json file
         fetch('coordinates.json')
@@ -151,7 +152,7 @@
                 var coordinates = data;
 
                 var polyline = L.polyline(coordinates, { color: 'black', weight: 1.5 }).addTo(map);
-                
+
                 // Fit the map to the polyline's bounds
                 map.fitBounds(polyline.getBounds(), { padding: [15, 15] });
 
@@ -182,6 +183,20 @@
 
                 destinationMarker.on('click', function () {
                     map.flyTo(destinationLocation, 19, {
+                        animate: true,
+                    });
+                });
+
+                var studentStopMarker = L.marker(studentStopLocation, {
+                    icon: L.icon({
+                        iconUrl: 'img/studentStop.png',
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 32],
+                    })
+                }).addTo(map);
+
+                studentStopMarker.on('click', function () {
+                    map.flyTo(studentStopLocation, 19, {
                         animate: true,
                     });
                 });
