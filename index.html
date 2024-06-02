@@ -142,6 +142,7 @@
             maxZoom: 19,
         }).addTo(map);
 
+        var sourceLocation;
         var destinationLocation; // Declare destinationLocation outside fetch block
         var studentStopLocation = [17.5764616, 78.4243604]; // Declare studentStopLocation **GLOBAL DECLARATION**
         var busLocation = [17.564684, 78.416252]; // Declare busLocation **Different for every bus**
@@ -158,7 +159,7 @@
                 // Fit the map to the polyline's bounds
                 map.fitBounds(polyline.getBounds(), { padding: [15, 15] });
 
-                var sourceLocation = coordinates[0];
+                sourceLocation = coordinates[0];
                 var sourceMarker = L.marker(sourceLocation, {
                     icon: L.icon({
                         iconUrl: 'img/firstStop.png',
