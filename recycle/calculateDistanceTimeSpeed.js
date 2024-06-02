@@ -8,7 +8,7 @@ export async function calculateDistanceTimeSpeed(locationOne, locationTwo, speed
                 L.latLng(locationOne[0], locationOne[1]),
                 L.latLng(locationTwo[0], locationTwo[1])
             ],
-            createMarker: () => null, // Do not create markers
+            createMarker: () => null,
             routeWhileDragging: false,
             addWaypoints: false,
             fitSelectedRoutes: false,
@@ -18,8 +18,8 @@ export async function calculateDistanceTimeSpeed(locationOne, locationTwo, speed
         routingControl.on('routesfound', function (e) {
             const routes = e.routes;
             const summary = routes[0].summary;
-            const distanceKm = summary.totalDistance / 1000; // Convert to kilometers
-            const timeHr = distanceKm / speed; // Time in hours
+            const distanceKm = summary.totalDistance / 1000;
+            const timeHr = distanceKm / speed;
 
             let distance, time;
             if (distanceKm < 1) {
