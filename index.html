@@ -151,6 +151,8 @@
                 var coordinates = data;
 
                 var polyline = L.polyline(coordinates, { color: 'black', weight: 1.5 }).addTo(map);
+                
+                // Fit the map to the polyline's bounds
                 map.fitBounds(polyline.getBounds(), { padding: [15, 15] });
 
                 var sourceLocation = coordinates[0];
